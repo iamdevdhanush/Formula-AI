@@ -40,47 +40,75 @@ const pageMetadata = {
   'analytics':     { title: 'Analytics',     subtitle: 'Race data, trends, and insights' },
 };
 
-// ── ROUTER ─────────────────────────────────────────
+// ── ROUTER ───────────────────────────────────────────────
 class Router {
   constructor() {
-    this.currentPage = 'home';
+    this.currentPage = null;
     this.contentEl = null;
+    this.topbarEl = null;
     this.topbarTitleEl = null;
     this.topbarSubtitleEl = null;
+    // AbortController to cancel previous page's resize listeners on navigate
+    this._resizeController = null;
   }
 
   navigate(pageId) {
     if (!pages[pageId]) pageId = 'home';
+    // Prevent re-rendering the same page
+    if (pageId === this.currentPage) return;
     this.currentPage = pageId;
 
-    // Update URL hash
+    // Cancel resize listeners registered by the previous page
+    if (this._resizeController) {
+      this._resizeController.abort();
+    }
+    this._resizeController = new AbortController();
+
+    // Update URL hash silently
     history.pushState(null, '', `#${pageId}`);
 
     // Update navigation active state
     updateNavActive(pageId);
 
-    // Update topbar
+    // Update topbar text
     const meta = pageMetadata[pageId] || {};
     if (this.topbarTitleEl) this.topbarTitleEl.textContent = meta.title || 'FormulaAI';
     if (this.topbarSubtitleEl) this.topbarSubtitleEl.textContent = meta.subtitle || '';
 
-    // Hide topbar on race-engineer page (has its own topbar)
+    // Race Engineer has its own topbar — hide the global one
     if (this.topbarEl) {
       this.topbarEl.style.display = pageId === 'race-engineer' ? 'none' : 'flex';
     }
 
-    // Clear and render new page
-    if (this.contentEl) {
-      this.contentEl.innerHTML = '';
-      const factory = pages[pageId];
-      const pageEl = factory(this);
-      pageEl.classList.add('page-enter');
-      this.contentEl.appendChild(pageEl);
-    }
+    if (!this.contentEl) return;
 
-    // Scroll to top
-    if (this.contentEl) this.contentEl.scrollTop = 0;
-    window.scrollTo(0, 0);
+    // ── TRANSITION: fade out → swap → fade in ──
+    const container = this.contentEl;
+    container.style.transition = 'opacity 120ms ease-out';
+    container.style.opacity = '0';
+
+    // Use a short timeout that matches the fade-out duration
+    setTimeout(() => {
+      // Wipe previous page
+      container.innerHTML = '';
+
+      // Build new page — pass the abort signal so pages can
+      // add resize listeners tied to this navigation
+      const factory = pages[pageId];
+      const pageEl = factory(this, this._resizeController.signal);
+
+      // Ensure the page enters with animation class
+      pageEl.classList.add('page-enter');
+      container.appendChild(pageEl);
+
+      // Reset scroll to top of the container
+      container.scrollTop = 0;
+
+      // Fade back in
+      requestAnimationFrame(() => {
+        container.style.opacity = '1';
+      });
+    }, 120);
   }
 }
 
@@ -241,6 +269,17 @@ function showToast(message, duration = 3000) {
   }, duration);
 }
 
-// ── BOOT ──────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', initApp);
-initApp();
+// ── BOOT ───────────────────────────────────────────────
+// Single init guard: only run once, after DOM is ready
+let _booted = false;
+function boot() {
+  if (_booted) return;
+  _booted = true;
+  initApp();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', boot);
+} else {
+  boot();
+}

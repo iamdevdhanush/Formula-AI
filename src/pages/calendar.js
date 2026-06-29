@@ -3,7 +3,7 @@
    ============================================ */
 import { calendar } from '../data/mock-data.js';
 
-export function createCalendarPage() {
+export function createCalendarPage(router, signal) {
   const page = document.createElement('div');
   page.className = 'page-enter';
 

@@ -5,10 +5,10 @@
 /* ── APP SHELL ── */
 
 #app {
-  min-height: 100dvh;
+  height: 100dvh;
   display: flex;
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 /* ── SIDEBAR NAVIGATION ── */
@@ -162,9 +162,22 @@
 .main-content {
   flex: 1;
   margin-left: var(--sidebar-w);
-  min-height: 100dvh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   transition: margin-left var(--dur-slow) var(--ease-out);
+}
+
+/* ── PAGE CONTAINER — the ONLY scroll region ── */
+#page-container {
+  flex: 1;
+  overflow-y: auto;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  /* Ensure it always fills available space */
+  min-height: 0;
 }
 
 /* ── TOP BAR ── */
@@ -400,7 +413,12 @@
 
   .main-content {
     margin-left: 0;
-    padding-bottom: var(--nav-h-mobile);
+    height: calc(100dvh - var(--nav-h-mobile));
+  }
+
+  #page-container {
+    /* Account for mobile nav bar at bottom */
+    padding-bottom: var(--space-4);
   }
 
   .page {
@@ -412,7 +430,7 @@
   .sidebar {
     width: var(--sidebar-w);
   }
-  
+
   .main-content {
     margin-left: var(--sidebar-w);
   }

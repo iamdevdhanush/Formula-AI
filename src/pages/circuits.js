@@ -4,7 +4,7 @@
 import { circuits } from '../data/mock-data.js';
 import { createCircuitCard } from '../components/cards.js';
 
-export function createCircuitsPage() {
+export function createCircuitsPage(router, signal) {
   const page = document.createElement('div');
   page.className = 'page-enter';
 
@@ -47,7 +47,7 @@ export function createCircuitsPage() {
     else grid.style.gridTemplateColumns = 'repeat(3,1fr)';
   }
   onResize();
-  window.addEventListener('resize', onResize);
+  window.addEventListener('resize', onResize, { signal });
 
   page.appendChild(content);
   return page;

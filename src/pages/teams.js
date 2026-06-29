@@ -3,7 +3,7 @@
    ============================================ */
 import { teams } from '../data/mock-data.js';
 
-export function createTeamsPage() {
+export function createTeamsPage(router, signal) {
   const page = document.createElement('div');
   page.className = 'page-enter';
 

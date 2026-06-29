@@ -6,7 +6,7 @@
 import { drivers, standings } from '../data/mock-data.js';
 import { createDriverCard, createSparkline } from '../components/cards.js';
 
-export function createDriversPage() {
+export function createDriversPage(router, signal) {
   const page = document.createElement('div');
   page.className = 'page-enter';
 
@@ -69,7 +69,7 @@ export function createDriversPage() {
     else grid.style.gridTemplateColumns = 'repeat(3,1fr)';
   }
   onResize();
-  window.addEventListener('resize', onResize);
+  window.addEventListener('resize', onResize, { signal });
 
   page.appendChild(content);
   return page;

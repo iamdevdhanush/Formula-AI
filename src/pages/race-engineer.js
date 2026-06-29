@@ -4,6 +4,6 @@
    ============================================ */
 import { createAIChatPage } from '../components/ai-chat.js';
 
-export function createRaceEngineerPage() {
-  return createAIChatPage();
+export function createRaceEngineerPage(router, signal) {
+  return createAIChatPage(router, signal);
 }

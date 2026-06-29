@@ -4,7 +4,7 @@
 import { standings, constructorStandings, liveLeaderboard } from '../data/mock-data.js';
 import { createSparkline, createBarChart } from '../components/cards.js';
 
-export function createAnalyticsPage() {
+export function createAnalyticsPage(router, signal) {
   const page = document.createElement('div');
   page.className = 'page-enter';
 
@@ -201,7 +201,7 @@ export function createAnalyticsPage() {
     }
   }
   onResize();
-  window.addEventListener('resize', onResize);
+  window.addEventListener('resize', onResize, { signal });
 
   page.appendChild(content);
   return page;

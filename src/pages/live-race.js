@@ -7,10 +7,9 @@ import { currentRace, liveLeaderboard } from '../data/mock-data.js';
 import { createTimingRow } from '../components/cards.js';
 import { getTrackSvg } from '../components/cards.js';
 
-export function createLiveRacePage() {
+export function createLiveRacePage(router, signal) {
   const page = document.createElement('div');
   page.className = 'page-enter';
-  page.style.cssText = 'min-height:100vh;background:var(--bg-void)';
 
   // ── HERO BANNER ──────────────────────────────────
   const heroBanner = document.createElement('div');
@@ -219,7 +218,7 @@ export function createLiveRacePage() {
     }
   }
   onResize();
-  window.addEventListener('resize', onResize);
+  window.addEventListener('resize', onResize, { signal });
 
   return page;
 }

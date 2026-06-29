@@ -9,7 +9,7 @@ import {
 } from '../data/mock-data.js';
 import { createTimingRow, createNewsCard, createInsightCard, createWeatherCard, createSparkline } from '../components/cards.js';
 
-export function createHomePage(router) {
+export function createHomePage(router, signal) {
   const page = document.createElement('div');
   page.className = 'page-enter';
 
@@ -50,9 +50,9 @@ export function createHomePage(router) {
 
   page.appendChild(content);
 
-  // Make responsive
+  // Responsive: use signal so listener is removed on navigation
   handleHomeResponsive(row1, row2, row3);
-  window.addEventListener('resize', () => handleHomeResponsive(row1, row2, row3));
+  window.addEventListener('resize', () => handleHomeResponsive(row1, row2, row3), { signal });
 
   return page;
 }

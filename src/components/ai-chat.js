@@ -15,11 +15,11 @@ const REASONING_STEPS = [
   { label: 'Generating recommendations', delay: 2400 },
 ];
 
-export function createAIChatPage() {
+export function createAIChatPage(router, signal) {
   const page = document.createElement('div');
   page.style.cssText = `
     display: flex;
-    height: 100dvh;
+    height: 100%;
     overflow: hidden;
     background: var(--bg-void);
   `;
@@ -162,7 +162,7 @@ export function createAIChatPage() {
     }
   }
   handleResize();
-  window.addEventListener('resize', handleResize);
+  window.addEventListener('resize', handleResize, { signal });
 
   return page;
 }

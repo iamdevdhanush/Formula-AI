@@ -3,7 +3,7 @@
    ============================================ */
 import { news } from '../data/mock-data.js';
 
-export function createNewsPage() {
+export function createNewsPage(router, signal) {
   const page = document.createElement('div');
   page.className = 'page-enter';
 
@@ -72,7 +72,7 @@ export function createNewsPage() {
     }
   }
   onResize();
-  window.addEventListener('resize', onResize);
+  window.addEventListener('resize', onResize, { signal });
 
   page.appendChild(content);
   return page;
