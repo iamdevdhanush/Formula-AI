@@ -1,0 +1,145 @@
+/* ============================================
+   FORMULAAI — DESIGN TOKEN SYSTEM
+   The single source of truth for all visual decisions
+   ============================================ */
+
+:root {
+  /* ── BACKGROUNDS ── */
+  --bg-void:        #050506;
+  --bg-primary:     #0d0d10;
+  --bg-surface:     #131318;
+  --bg-elevated:    #1a1a22;
+  --bg-overlay:     #21212c;
+  --bg-glass:       rgba(255, 255, 255, 0.04);
+  --bg-glass-hover: rgba(255, 255, 255, 0.07);
+  --bg-glass-active:rgba(255, 255, 255, 0.10);
+
+  /* ── ACCENT COLORS ── */
+  --accent-red:        #e10600;
+  --accent-red-soft:   rgba(225, 6, 0, 0.15);
+  --accent-red-glow:   rgba(225, 6, 0, 0.35);
+  --accent-cyan:       #00d2be;
+  --accent-cyan-soft:  rgba(0, 210, 190, 0.12);
+  --accent-amber:      #ffd13b;
+  --accent-amber-soft: rgba(255, 209, 59, 0.12);
+  --accent-blue:       #0090ff;
+  --accent-blue-soft:  rgba(0, 144, 255, 0.12);
+  --accent-purple:     #a855f7;
+  --accent-purple-soft:rgba(168, 85, 247, 0.12);
+
+  /* ── TEXT ── */
+  --text-primary:   #f0f0f5;
+  --text-secondary: rgba(240, 240, 245, 0.55);
+  --text-muted:     rgba(240, 240, 245, 0.30);
+  --text-disabled:  rgba(240, 240, 245, 0.18);
+  --text-inverse:   #080809;
+
+  /* ── BORDERS ── */
+  --border-subtle:  rgba(255, 255, 255, 0.06);
+  --border-default: rgba(255, 255, 255, 0.10);
+  --border-strong:  rgba(255, 255, 255, 0.18);
+  --border-accent:  rgba(225, 6, 0, 0.40);
+  --border-cyan:    rgba(0, 210, 190, 0.30);
+
+  /* ── RADIUS ── */
+  --radius-xs:   4px;
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   14px;
+  --radius-xl:   20px;
+  --radius-2xl:  28px;
+  --radius-full: 9999px;
+
+  /* ── SPACING ── */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-7:  28px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  /* ── TYPOGRAPHY SCALE ── */
+  --font-primary:  'Outfit', system-ui, sans-serif;
+  --font-mono:     'JetBrains Mono', 'Fira Code', monospace;
+
+  --text-xs:   11px;
+  --text-sm:   13px;
+  --text-base: 15px;
+  --text-md:   17px;
+  --text-lg:   20px;
+  --text-xl:   24px;
+  --text-2xl:  30px;
+  --text-3xl:  38px;
+  --text-4xl:  48px;
+  --text-5xl:  60px;
+  --text-6xl:  76px;
+  --text-7xl:  96px;
+
+  /* ── FONT WEIGHTS ── */
+  --weight-light:   300;
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-semibold:600;
+  --weight-bold:    700;
+  --weight-heavy:   800;
+  --weight-black:   900;
+
+  /* ── LINE HEIGHTS ── */
+  --leading-tight:  1.1;
+  --leading-snug:   1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed:1.7;
+
+  /* ── LETTER SPACING ── */
+  --tracking-tight: -0.04em;
+  --tracking-snug:  -0.02em;
+  --tracking-normal: 0em;
+  --tracking-wide:   0.04em;
+  --tracking-wider:  0.08em;
+  --tracking-widest: 0.14em;
+
+  /* ── SHADOWS ── */
+  --shadow-sm:  0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
+  --shadow-md:  0 4px 12px rgba(0,0,0,0.5), 0 2px 6px rgba(0,0,0,0.3);
+  --shadow-lg:  0 10px 30px rgba(0,0,0,0.6), 0 4px 12px rgba(0,0,0,0.4);
+  --shadow-xl:  0 20px 60px rgba(0,0,0,0.7), 0 8px 24px rgba(0,0,0,0.5);
+  --shadow-red: 0 0 20px rgba(225, 6, 0, 0.3), 0 0 60px rgba(225, 6, 0, 0.1);
+  --shadow-cyan:0 0 20px rgba(0, 210, 190, 0.2), 0 0 40px rgba(0, 210, 190, 0.08);
+
+  /* ── EASING ── */
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:     cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-inout:  cubic-bezier(0.45, 0, 0.55, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.8, 0.64, 1);
+
+  /* ── DURATION ── */
+  --dur-instant: 80ms;
+  --dur-fast:    150ms;
+  --dur-normal:  250ms;
+  --dur-slow:    400ms;
+  --dur-page:    600ms;
+
+  /* ── Z-INDEX ── */
+  --z-base:    0;
+  --z-raised:  10;
+  --z-sticky:  100;
+  --z-overlay: 200;
+  --z-modal:   300;
+  --z-toast:   400;
+  --z-tooltip: 500;
+
+  /* ── NAV DIMENSIONS ── */
+  --sidebar-w:          64px;
+  --sidebar-expanded-w: 240px;
+  --nav-h-mobile:       64px;
+  --topbar-h:           56px;
+}
