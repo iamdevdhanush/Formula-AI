@@ -197,6 +197,34 @@
   border-radius: var(--radius-sm);
 }
 
+.skeleton-line {
+  background: linear-gradient(90deg, var(--bg-elevated) 0%, var(--bg-overlay) 50%, var(--bg-elevated) 100%);
+  background-size: 800px 100%;
+  animation: shimmer 1.8s linear infinite;
+  border-radius: 6px;
+  height: 14px;
+}
+
+.skeleton-circle {
+  background: linear-gradient(90deg, var(--bg-elevated) 0%, var(--bg-overlay) 50%, var(--bg-elevated) 100%);
+  background-size: 800px 100%;
+  animation: shimmer 1.8s linear infinite;
+  border-radius: 50%;
+}
+
+.skeleton-container {
+  animation: fadeUp 400ms var(--ease-out) both;
+}
+
+.spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid var(--border-subtle);
+  border-top-color: var(--accent-red);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
 /* Float animation */
 .float {
   animation: float 4s ease-in-out infinite;
